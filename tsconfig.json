@@ -115,7 +115,7 @@
   "@exceptions/*": ["exceptions/*"],
   "@interfaces/*": ["interfaces/*"],
   "@prisma/*": ["prisma/*"],
-  "@middlewares/*": ["middlewares/*"],
+  "@middelwares/*": ["middelwares/*"],
   "@routes/*": ["routes/*"],
   "@models/*": ["models/*"],
   "@services/*": ["services/*"],
