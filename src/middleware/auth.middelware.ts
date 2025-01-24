@@ -18,3 +18,13 @@ export const isAuthenticate = (req: Request, res: Response, next:NextFunction):a
   }
 
 };
+
+export const isAdmin = (req: Request, res:Response, next:NextFunction): any => {
+
+  const {user} = req.body
+
+  if(!user || user.role != 'admin') {
+    return res.status(403).json({ error: "Acces denied, only admins" });
+  }
+
+}

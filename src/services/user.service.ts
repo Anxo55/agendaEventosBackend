@@ -21,4 +21,16 @@ export class UserService{
     if (!findUser) throw new Error("User not found");
     return findUser;
   }
+
+  static async getAll() {
+    const users = await prisma.user.findMany({
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        role: true
+      }
+    }) 
+    return users;
+  }
 }
