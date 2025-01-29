@@ -21,7 +21,17 @@ const limiter = rateLimit({
 
 app.use(limiter)
 
-app.use(cors())
+//TODO: Con esto limitamos cors
+/* TODO: Mientras lo hagamos en local nos sirve la URL
+cuando hagamos el deploy tendremos que cambiar la URL, sino daria error
+*/
+
+app.use(cors({
+  origin: 'http://localhost:5173',
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}))
+
 app.use('/api/auth', authRouter)
 app.use('/api/users', userRouter)
 
