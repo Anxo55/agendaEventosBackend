@@ -26,9 +26,4 @@ npm i --save-dev @types/compression
 npm i cookie-parser
 npm i --save-dev @types/cookie-parser
 
-npm i cors
-npm i --save-dev @types/cors
-
-npm i express-validator
-
 ```
