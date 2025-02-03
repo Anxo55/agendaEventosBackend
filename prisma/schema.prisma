@@ -4,6 +4,12 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
+//TODO: DATABASE TURSO
+/* eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJhIjoicnciLCJpYXQiOjE3Mzg1ODExNTksImlkIjoiYzI4OGQ1NzMtYjczYi00YmI5LWFjZjctZjViOWUwYzY1OWRkIn0.lVJWo5dLy3WdBRWE9PF7qeKg_rzAu11W3hkyojSbbwvKz3VSlvRIg2qsz0sIrEbvXX0aQT10zKJ_Sv06C46JAQ 
+
+  libsql://agendaeventosdatabase-anxo55.turso.io
+*/
+
 generator client {
   provider = "prisma-client-js"
 }
