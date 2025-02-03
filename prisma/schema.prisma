@@ -25,4 +25,19 @@ model User {
   acceptNotifications Boolean @default(true)
   createdAt DateTime @default(now()) 
   updateAt DateTime @updatedAt
+
+  Event Event[]
+}
+
+model Event {
+  id              Int      @id @default(autoincrement())
+  title           String
+  description     String
+  date            DateTime
+  location        String
+  organizerId     Int
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  organizer       User     @relation(fields: [organizerId], references: [id])
 }

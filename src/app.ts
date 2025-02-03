@@ -1,6 +1,7 @@
 import express, {Response, Request} from "express"
 import authRouter from './routes/auth.routes'
 import userRouter from './routes/user.routes'
+import eventsRouter from './routes/events.routes'
 import cors from 'cors'
 import rateLimit from 'express-rate-limit'
 import helmet from "helmet"
@@ -34,6 +35,7 @@ app.use(cors({
 
 app.use('/api/auth', authRouter)
 app.use('/api/users', userRouter)
+app.use('/api/events', eventsRouter)
 
 
 app.get('/', (req:Request, res:Response)=> {
