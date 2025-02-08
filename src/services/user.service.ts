@@ -1,3 +1,4 @@
+import { prisma } from "../database/database";
 import { PrismaClient, User } from "@prisma/client";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -5,7 +6,7 @@ import jwt from "jsonwebtoken";
 // alta coexion bajo acoplamiento
 
 // usar un patron singleton
-const prisma = new PrismaClient();
+// const prisma = new PrismaClient();
 
 // Esta clase se encarga de gestionar los usuarios
 export class UserService{
