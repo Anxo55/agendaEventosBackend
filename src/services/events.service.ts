@@ -1,5 +1,5 @@
-import { prisma } from "@/database/database";
-import { HttpException } from "@/exceptions/httpException";
+import { prisma } from "../database/database";
+import { HttpException } from "../exceptions/httpException";
 
 export class EventsService {
     static async getAll(title: string = '') {
