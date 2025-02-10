@@ -40,6 +40,7 @@ model Event {
   id              Int      @id @default(autoincrement())
   title           String
   description     String
+  imageUrl        String?
   date            DateTime
   location        String
   organizerId     Int
