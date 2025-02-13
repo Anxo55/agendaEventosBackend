@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { EventsService } from "../services/events.service";
+import { HttpException } from "../exceptions/httpException";
 
 export class EventsController {
     static async getAll(req: Request, res: Response, next:NextFunction) {
@@ -20,6 +21,18 @@ export class EventsController {
         }
         catch (error) {
             res.status(409).json({ message: 'Fallo al obtener el evento', error });
+        }
+    }
+
+    static async deleteEvent(req:Request, res:Response, next:Function) {
+        try{
+            const id = Number.parseInt(req.params.id)
+            if (isNaN(id)) throw new HttpException(400, "Invalid offer ID");
+
+            const deletedOffer = await EventsService.deleteEvent(id)
+            res.status(200).json(deletedOffer)
+        }catch(error){
+            next(error)
         }
     }
 }

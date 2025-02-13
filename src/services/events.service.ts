@@ -17,4 +17,14 @@ export class EventsService {
         if(!findEvent) throw new HttpException(404, 'Event not found')
          return findEvent
     }
+
+    static async deleteEvent(id:number) {
+        
+        try {
+            return await prisma.event.delete({ where: { id } });
+        } catch (error) {
+            throw new HttpException(404, "Offer not found");
+        }
+        
+    }
 }
