@@ -17,6 +17,8 @@ export class EventsController {
         try {
             const id = parseInt(req.params.id);
             const event = await EventsService.getById(id);
+            console.log(event);
+            
             res.status(200).json(event);
         }
         catch (error) {
@@ -33,6 +35,17 @@ export class EventsController {
             res.status(200).json(deletedOffer)
         }catch(error){
             next(error)
+        }
+    }
+
+    static async createEvent(req: Request, res: Response, next: NextFunction) {
+        try {
+            const { title, description, date, location, organizerId} = req.body;
+            const newEvent = await EventsService.createEvent(title, description, date, location, organizerId);
+            res.status(201).json(newEvent);
+        }
+        catch (error) {
+            res.status(409).json({ message: 'Fallo al crear el evento', error });
         }
     }
 }

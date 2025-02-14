@@ -28,7 +28,7 @@ cuando hagamos el deploy tendremos que cambiar la URL, sino daria error
 */
 
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://agendaeventosfrontend.onrender.com'],
+  origin: ['http://localhost:5173', 'https://agendaeventosfrontend.onrender.com', 'http://localhost:4173'],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization']

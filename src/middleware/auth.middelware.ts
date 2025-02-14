@@ -11,7 +11,7 @@ export const isAuthenticate = (req: Request, res: Response, next:NextFunction):a
 
   try {
     const tokenDecodificado = jwt.verify(token, TOKEN_PASSWORD);
-    req.body.user = tokenDecodificado 
+    req.body = tokenDecodificado 
     next()
   } catch (error) {
     res.status(401).json({ error: "Invalid token" })

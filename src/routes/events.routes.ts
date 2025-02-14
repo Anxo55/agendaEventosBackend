@@ -1,4 +1,4 @@
-import { isAuthenticate } from "../middleware/auth.middelware";
+import { isAdmin, isAuthenticate } from "../middleware/auth.middelware";
 import { EventsController } from "../controllers/events.controller";
 import { Router } from "express";
 
@@ -9,5 +9,6 @@ const router = Router()
 router.get('/', EventsController.getAll)
 router.get('/:id', EventsController.getById)
 router.delete('/:id',isAuthenticate, EventsController.deleteEvent)
+router.post('/', EventsController.createEvent)
 
 export default router

@@ -18,12 +18,13 @@ CREATE TABLE "Event" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "title" TEXT NOT NULL,
     "description" TEXT NOT NULL,
+    "imageUrl" TEXT,
     "date" DATETIME NOT NULL,
     "location" TEXT NOT NULL,
-    "organizerId" INTEGER NOT NULL,
+    "organizerId" INTEGER,
     "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" DATETIME NOT NULL,
-    CONSTRAINT "Event_organizerId_fkey" FOREIGN KEY ("organizerId") REFERENCES "User" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
+    CONSTRAINT "Event_organizerId_fkey" FOREIGN KEY ("organizerId") REFERENCES "User" ("id") ON DELETE SET NULL ON UPDATE CASCADE
 );
 
 -- CreateIndex

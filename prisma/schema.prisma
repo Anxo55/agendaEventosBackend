@@ -43,9 +43,9 @@ model Event {
   imageUrl        String?
   date            DateTime
   location        String
-  organizerId     Int
+  organizerId     Int?
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 
-  organizer       User     @relation(fields: [organizerId], references: [id])
+  organizer       User?     @relation(fields: [organizerId], references: [id])
 }
