@@ -31,7 +31,8 @@ export class EventsController {
             const id = Number.parseInt(req.params.id)
             if (isNaN(id)) throw new HttpException(400, "Invalid offer ID");
 
-            const deletedOffer = await EventsService.deleteEvent(id)
+            const userId = req.body.user.id
+            const deletedOffer = await EventsService.deleteEvent(id, userId)
             res.status(200).json(deletedOffer)
         }catch(error){
             next(error)

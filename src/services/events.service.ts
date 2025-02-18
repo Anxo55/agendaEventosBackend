@@ -18,14 +18,17 @@ export class EventsService {
          return findEvent
     }
 
-    static async deleteEvent(id:number) {
-        
-        try {
-            return await prisma.event.delete({ where: { id } });
-        } catch (error) {
-            throw new HttpException(404, "Offer not found");
+    static async deleteEvent(id: number, userId: number) {
+        const event = await prisma.event.findUnique({ where: { id } });
+    
+        if (!event) throw new HttpException(404, "Event not found");
+    
+        // Verifica si el usuario que intenta eliminar es el creador
+        if (event.organizerId !== userId) {
+            throw new HttpException(403, "You don't have permission to delete this event");
         }
-        
+    
+        return await prisma.event.delete({ where: { id } });
     }
 
     //Metodo para crear un nuevo evento
