@@ -40,12 +40,16 @@ export class EventsController {
 
     static async createEvent(req: Request, res: Response, next: NextFunction) {
         try {
-            const { title, description, date, location, organizerId} = req.body;
-            const newEvent = await EventsService.createEvent(title, description, date, location, organizerId);
+            const { title, description, location, imageUrl, date} = req.body;
+            console.log(req.body);
+            const organizerId = req.body.user.id
+            const date2 = new Date()
+            const newEvent = await EventsService.createEvent(title, description,date2, location, imageUrl, organizerId);
             res.status(201).json(newEvent);
         }
         catch (error) {
-            res.status(409).json({ message: 'Fallo al crear el evento', error });
+            //res.status(409).json({ message: 'Fallo al crear el evento' });
+            next(error)
         }
     }
 }

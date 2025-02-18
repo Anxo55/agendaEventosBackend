@@ -1,30 +1,40 @@
-import { Response, Request, NextFunction } from "express";
+import { HttpException } from "@/exceptions/httpException";
+import { Request, Response, NextFunction } from "express";
 import jwt from "jsonwebtoken";
 
-const TOKEN_PASSWORD = process.env.TOKEN_PASSWORD || "pass";
+export const isAuthenticated = (req: Request, res: Response, next: NextFunction):any => {
+    /*
+    const authHeader = req.headers.authorization;
 
-// TODO: quita el any
-export const isAuthenticate = (req: Request, res: Response, next:NextFunction):any => {
+    if (!authHeader) {
+        return res.status(401).json({ error: "No token provided" });
+    }
+    
 
-  const token = req.headers.authorization?.split(" ")[1]
-  if (!token) return res.status(401).json({ error: "Acess denied" });
-
-  try {
-    const tokenDecodificado = jwt.verify(token, TOKEN_PASSWORD);
-    req.body = tokenDecodificado 
-    next()
-  } catch (error) {
-    res.status(401).json({ error: "Invalid token" })
-  }
-
+    const token = authHeader.split(" ")[1]; // 👈 Obtener el token sin "Bearer"
+    if (!token) {
+        return res.status(401).json({ error: "Token format is invalid" });
+    }
+    */
+    const token = req.cookies.token;
+    if(!token) next(new HttpException(403, "Invalid token"))
+    try {
+        const decoded = jwt.verify(token, process.env.TOKEN_PASSWORD || "clave-super-secreta");
+        req.body.user = decoded; // Guardar usuario en el request
+        next();
+    } catch (error) {
+        return res.status(401).json({ error: "Invalid token" });
+    }
 };
 
-export const isAdmin = (req: Request, res:Response, next:NextFunction): any => {
 
-  const {user} = req.body
+/* export const isAdmin = (req: Request, res:Response, next:NextFunction): any => {
+
+  const user = req.user
 
   if(!user || user.role != 'admin') {
     return res.status(403).json({ error: "Acces denied, only admins" });
   }
+  next()
 
-}
+} */

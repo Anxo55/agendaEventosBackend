@@ -29,16 +29,17 @@ export class EventsService {
     }
 
     //Metodo para crear un nuevo evento
-    static async createEvent(title: string, description: string, date: Date, location: string, organizerId: number) {
+    static async createEvent(title: string, description: string, date:Date, location: string, imageUrl: string, organizerId: number) {
         return await prisma.event.create({
             data: {
                 title,
                 description,
-                date,
                 location,
-                organizerId
+                imageUrl,
+                organizerId,
+                date // Se toma del token, no del frontend
             }
-        })
+        });
+    }
     
     }
-}
