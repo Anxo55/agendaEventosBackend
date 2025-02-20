@@ -42,10 +42,19 @@ export class EventsController {
     static async createEvent(req: Request, res: Response, next: NextFunction) {
         try {
             const { title, description, location, imageUrl, date} = req.body;
-            console.log(req.body);
+            console.log("Datos recibidos en el backend: ",req.body);
+
+            if(!title || !description || !location || !date) {
+                throw new HttpException(400, "Faltan datos obligatorios");
+            }
+
             const organizerId = req.body.user.id
-            const date2 = new Date()
-            const newEvent = await EventsService.createEvent(title, description,date2, location, imageUrl, organizerId);
+            const parseDate = new Date(date)
+
+            if (isNaN(parseDate.getTime())) {
+                throw new HttpException(400, "Fecha inválida");
+            }
+            const newEvent = await EventsService.createEvent(title, description,parseDate, location, imageUrl || "", organizerId);
             res.status(201).json(newEvent);
         }
         catch (error) {
