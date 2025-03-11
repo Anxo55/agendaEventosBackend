@@ -1,6 +1,6 @@
 import { QuejasController } from "../controllers/quejas.controller";
 import { isAuthenticated } from "../middleware/auth.middelware";
-import { isAdmin } from "@/middleware/isAdmin.middleware";
+import { isAdmin } from "../middleware/isAdmin.middleware";
 import { Router } from "express";
 
 
